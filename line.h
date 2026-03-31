@@ -10,7 +10,14 @@ public:
         Point(double _x = 0, double _y = 0) : x(_x), y(_y) {}
 
         double distanceTo(const Point& other) const {
-            return std::sqrt(std::pow(x - other.x, 2) + std::pow(y - other.y, 2));
+            return std::sqrt(this->squareDistanceTo(other));
+        }
+
+        //Square of distance. Faster than "distanceTo" because std::sqrt is hard operation
+        double squareDistanceTo(const Point& other) const {
+            double dx = x - other.x;
+            double dy = y - other.y;
+            return dx * dx + dy * dy;
         }
     };
 
